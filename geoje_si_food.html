@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>경상남도 방방곡곡</title>
+			<link rel="stylesheet" href="css/style.css" />
+      <link rel="stylesheet" href="css/food.css" />
+			<script script type="text/javascript" src="http://code.jquery.com/jquery-3.2.0.min.js"></script>
+			<script src="java_script/localfood_01_.js"></script>
+	</head>
+	<body class="food">
+		<div id="header">
+			<div class="container">
+				<div id="logo">
+					<h3><a id="home" href="index.html">경상남도 방방곡곡 </a></h3>
+				</div>
+				<nav id="nav">
+					<ul>
+						<li style="margin-right:10px;"><a href="index.html">Homepage</a></li>
+						<li><a href="web_map.html">지 도</a>
+			 			</li>
+						<li><a href="jinju_si.html">관 광 명 소</a>
+							<ul>
+								<li><br/></li>
+                                <li><a href="geoje_si.html">거제시</a></li>
+                                <li><a href="jinju_si.html">진주시</a></li>
+                                <li><a href="changwon_si.html">창원시</a></li>
+                                <li><a href="tongyong_si.html">통영시</a></li>
+         					</ul>
+						</li>
+						<li class="active"><a href="geoje_si_food.html">먹 거 리</a>
+							<ul>
+                                <li><br/></li>
+								<li><a href="geoje_si_food.html">거제시</a></li>
+								<li><a href="jinju_si_food.html">진주시</a></li>
+								<li><a href="changwon_si_food.html">창원시</a></li>
+								<li><a href="tongyeong_si_food.html">통영시</a></li>
+         					</ul>
+						</li>
+						<li><a href="info.html">I N F O</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<div id="banner">&nbsp;</div>
+		<!-- 첫번째 가게 소개--->
+		<div id="midsection">
+			<div class="container">
+				<div id ="textdiv">
+					<h1># 거제시 맛집</h1>
+					<p> </p>
+				</div>
+                <div id="main_pic">
+                    <div id="section" class="food_info">
+                        <div class="container">
+                            <div id="folder_section">
+                                <div id="folder_choice">
+                                    <ul>
+                                        <a href="#" onclick="openCloseAnswer('1-list_js_01', '1-first_folder');" id="1-button_01"><li id="1-list_js_01">대게수산</li></a>
+                                        <a href="#" onclick="openCloseAnswer2('1-list_js_02', '1-second_folder');" id="1-button_02"><li id="1-list_js_02">Business Hour</li></a>
+                                        <a href="#" onclick="openCloseAnswer3('1-list_js_03', '1-third_folder');" id="1-button_03"><li id="1-list_js_03">Menu</li></a>
+                                        <li></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="folder_article">
+                                <div id="1-first_folder">	
+                                    <img src="images/1. 대게수산.jpg"></img>
+                                    <h1>#대게수산 </h1>
+                                    <p> 위치(Location) : 경남 거제시 일운면 지세포해안로 74 현대빌딩 1층 <br/> 전화번호(Tel.) : 0507-1431-4848 </P><strong><P id=bus>찾아가는 길(Bus) </strong></br> 22, 22-2, 23, 23-1, 24-2, 25-2, 4000 </p>
+                                    <a href="https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%EA%B1%B0%EC%A0%9C+%EB%8C%80%EA%B2%8C%EC%88%98%EC%82%B0&oquery=%EA%B1%B0%EC%A0%9C%EC%8B%9C&tqi=U8OC4dp0J1ZssZwuNBRssssssbs-513760" target="_blank"><div id="folder_button" style="margin-top:12px;">더 알아보기</div></a>
+                                </div>
+                                <div id="1-second_folder">
+                                    <img src="images/1. 대게수산_1.jpg"></img>
+                                    <h1>#영업시간</h1>
+                                    </br></br></br><p style="margin-top:33px;"><strong>매일 11:00 – 22:00</strong></p>
+                                </div>
+                                <div id="1-third_folder">
+                                    <img src="images/1. 대게수산_2.jpg"></img>
+                                    <h1>#메 뉴</h1>
+                                    <p id=menu>대게 (1kg) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 60,000원 (변동) </br> 대게 (2kg) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 120,000원 (변동)
+                                        </br> 대게 (3kg)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 180,000원 (변동) </br> 대게 (4kg) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 240,000원 (변동) </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- 두번째 가게 소개--->
+                    <div id="section" class="food_info">
+                        <div class="container">
+                            <div id="folder_section">
+                                <div id="folder_choice">
+                                    <ul>
+                                        <a href="#first_folder" onclick="openCloseAnswer('2-list_js_01', '2-first_folder');" id="button_01"><li id="2-list_js_01">마소마레 </li></a>
+                                        <a href="#second_folder" onclick="openCloseAnswer2('2-list_js_02', '2-second_folder');" id="button_02"><li id="2-list_js_02">Business Hour</li></a>
+                                        <a href="#third_folder" onclick="openCloseAnswer3('2-list_js_03', '2-third_folder');" id="button_03"><li id="2-list_js_03">Menu</li></a>
+                                        <li></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="folder_article">
+                                <div id="2-first_folder">	
+                                    <img src="images/2. 마소마레.jpg"></img>
+                                    <h1>#마소마레 </h1>
+                                    <p> 위치(Location) : 경남 거제시 일운면 거제대로 1828-5 <br/> 전화번호(Tel.) : 055-681-4300 </P><strong><P id=bus>찾아가는 길(Bus) </strong></br> 24,  24-1,  25,  25-1,  63,  63-1,  65,  67,  67-1</p>
+                                    <a href="https://search.naver.com/search.naver?where=nexearch&sm=tab_jum&query=%EB%A7%88%EC%86%8C%EB%A7%88%EB%A0%88" target="_blank"><div id="folder_button" style="margin-top:12px;">더 알아보기</div></a>
+                                </div>
+                                <div id="2-second_folder">
+                                    <img src="images/2. 마소마레_1.jpg"></img>
+                                    <h1>#영업시간</h1>
+                                    </br></br></br><p style="margin-top:33px;"><strong>매일 10:00 – 23:00 Last order 22:00</strong></p>
+                                </div>
+                                <div id="2-third_folder">
+                                    <img src="images/2. 마소마레_2.jpg"></img>
+                                    <h1>#메 뉴</h1>
+                                    <p id=menu>에소프레소 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5,500원 
+                                        </br> 아메리카노 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5,500원 
+                                        </br> 바닐라라떼 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7,000원 
+                                        </br> 녹차라떼 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6,500원 
+                                        </br> 히비엘더티 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7,500원 
+                                        </br> 솔트크림마소라떼  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8,000원 </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <!-- 세번째 가게 소개--->
+                    <div id="section" class="food_info">
+                        <div class="container">
+                            <div id="folder_section">
+                                <div id="folder_choice">
+                                    <ul>
+                                        <a href="#first_folder" onclick="openCloseAnswer('3-list_js_01', '3-first_folder');" id="button_01"><li id="3-list_js_01">충무할매김밥 </li></a>
+                                        <a href="#second_folder" onclick="openCloseAnswer2('3-list_js_02', '3-second_folder');" id="button_02"><li id="3-list_js_02">Business Hour</li></a>
+                                        <a href="#third_folder" onclick="openCloseAnswer3('3-list_js_03', '3-third_folder');" id="button_03"><li id="3-list_js_03">Menu</li></a>
+                                        <li></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="folder_article">
+                                <div id="3-first_folder">	
+                                    <img src="images/3. 충무할매김밥.jpg"></img>
+                                    <h1>#충무할매김밥 </h1>
+                                    <p> 위치(Location) : 경남 거제시 동부면 거제대로 909 <br/> 전화번호(Tel.) : 055-635-7159 </P><strong><P id=bus>찾아가는 길(Bus) </strong></br> 55 </p>
+                                    <a href="https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%EA%B1%B0%EC%A0%9C+%EC%B6%A9%EB%AC%B4%ED%95%A0%EB%A7%A4%EA%B9%80%EB%B0%A5&oquery=%EC%B6%A9%EB%AC%B4%ED%95%A0%EB%A7%A4%EA%B9%80%EB%B0%A5&tqi=U8OFUdprvTossgmHhjossssstBo-161854" target="_blank"><div id="folder_button" style="margin-top:12px;">더 알아보기</div></a>
+                                </div>
+                                <div id="3-second_folder">
+                                    <img src="images/3. 충무할매김밥_1.jpg"></img>
+                                    <h1>#영업시간</h1>
+                                    </br></br></br><p style="margin-top:33px;"><strong>매일 07:00 - 19:30 </strong></p>
+                                </div>
+                                <div id="3-third_folder">
+                                    <img src="images/3. 충무할매김밥_2.jpg"></img>
+                                    <h1>#메 뉴</h1>
+                                    <p id=menu>낚지볶음(2인 기준) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 30,000원 </br> 충무김밥(1인 기준) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5,000원 
+                                        </br> 해물칼국수(2인 기준) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15,000원 </br> 매생이굴국밥(1인 기준) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 12,000원 
+                                        </br> 두루치기(2인 기준) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 25,000원
+                                        </br> 성계비빔밥(1인 기준) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15,000원 </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <!-- 네번째 가게 소개--->
+                    <div id="section" class="food_info">
+                        <div class="container">
+                            <div id="folder_section">
+                                <div id="folder_choice">
+                                    <ul>
+                                        <a href="#first_folder" onclick="openCloseAnswer('4-list_js_01', '4-first_folder');" id="button_01"><li id="4-list_js_01">거제멸치쌈밥</li></a>
+                                        <a href="#second_folder" onclick="openCloseAnswer2('4-list_js_02', '4-second_folder');" id="button_02"><li id="4-list_js_02">Business Hour</li></a>
+                                        <a href="#third_folder" onclick="openCloseAnswer3('4-list_js_03', '4-third_folder');" id="button_03"><li id="4-list_js_03">Menu</li></a>
+                                        <li></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="folder_article">
+                                <div id="4-first_folder">	
+                                    <img src="images/4. 거제멸치쌈밥.jpg"></img>
+                                    <h1>#거제멸치쌈밥</h1>
+                                    <p> 위치(Location) : 경남 거제시 일운면 지세포해안로 16 <br/> 전화번호(Tel.) : 055-682-0317 </P><strong><P id=bus>찾아가는 길(Bus) </strong></br> 22, 22-2, 23, 23-1, 24-2, 25-2, 4000 </p>
+                                    <a href="https://map.naver.com/v5/search/%EA%B1%B0%EC%A0%9C%20%EB%A9%B8%EC%B9%98%EC%8C%88%EB%B0%A5/place/37943279?c=14325906.6668931,4141586.3092471,15,0,0,0,dh&placePath=%3Fentry=pll&placeSearchOption=entry=pll%26filterId=r03310%26fromNxList=true%26sessionid=bRAJ8SMciAc8081eQPcKQjXI" target="_blank"><div id="folder_button" style="margin-top:12px;">더 알아보기</div></a>
+                                </div>
+                                <div id="4-second_folder">
+                                    <img src="images/4. 거제멸치쌈밥_1.jpg"></img>
+                                    <h1>#영업시간</h1>
+                                    </br></br></br><p style="margin-top:33px;"><strong>매일 10:30 – 21:00</strong></p>
+                                </div>
+                                <div id="4-third_folder">
+                                    <img src="images/4. 거제멸치쌈밥_2.jpg"></img>
+                                    <h1>#메 뉴</h1>
+                                    <p id=menu>A코스 (멸치쌈밥정식+멸치 회 무침) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15,000원 
+                                    </br> B코스 (멸치쌈밥정식) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 12,000원 
+                                    </br> 특선 톳 멍게비빔밥 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 12,000원 
+                                    </br> 어린이 특별 메뉴 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 12,000원 </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <!-- 다섯번째 가게 소개--->
+                    <div id="section" class="food_info">
+                        <div class="container">
+                            <div id="folder_section">
+                                <div id="folder_choice">
+                                    <ul>
+                                        <a href="#first_folder" onclick="openCloseAnswer('5-list_js_01', '5-first_folder');" id="button_01"><li id="5-list_js_01">파인에이플러스</li></a>
+                                        <a href="#second_folder" onclick="openCloseAnswer2('5-list_js_02', '5-second_folder');" id="button_02"><li id="5-list_js_02">Business Hour</li></a>
+                                        <a href="#third_folder" onclick="openCloseAnswer3('5-list_js_03', '5-third_folder');" id="button_03"><li id="5-list_js_03">Menu</li></a>
+                                        <li></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="folder_article">
+                                <div id="5-first_folder">	
+                                    <img src="images/5. 파인에이플러스.jpg"></img>
+                                    <h1>#파인에이플러스</h1>
+                                    <p> 위치(Location) : 경남 거제시 둔덕면 청마로 206 <br/> 전화번호(Tel.) : 055-637-4344 </P><strong><P id=bus>찾아가는 길(Bus) </strong></br> 41,  42,  44 </p>
+                                    <a href="https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%ED%8C%8C%EC%9D%B8%EC%97%90%EC%9D%B4%ED%94%8C%EB%9F%AC%EC%8A%A4&oquery=%EA%B1%B0%EC%A0%9C%EB%A9%B8%EC%B9%98%EC%8C%88%EB%B0%A5&tqi=U8OolwprvhGsss3B4uGssssstgd-258924" target="_blank"><div id="folder_button" style="margin-top:12px;">더 알아보기</div></a>
+                                </div>
+                                <div id="5-second_folder">
+                                    <img src="images/5. 파인에이플러스_1.jpg"></img>
+                                    <h1>#영업시간</h1>
+                                    </br></br></br><p style="margin-top:33px;"><strong>매일 10:30 - 19:00 Last Order 18:00</strong></p>
+                                </div>
+                                <div id="5-third_folder">
+                                    <img src="images/5. 파인에이플러스_2.jpg"></img>
+                                    <h1>#메 뉴</h1>
+                                    <p id=menu>거제 파스타 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 13,000원 
+                                    </br> 파인프라이라이스 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 13,000원 
+                                        </br>거제파인카레  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 13,000원 
+                                        </br> 파인치킨스테이크 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15,000원
+                                        </br> 파인에이플 핫티 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6,000원
+                                        </br> 퓨어파인주스  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6,000원</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            
+			</div>
+		</div>
+
+		<div id="pageInfo">
+			<div id="pageInfo_1">
+				<span id="footerTitle"><strong>경상남도 방방곡곡</strong></span>
+			</div>
+			<div id="pageInfo_2">
+				<p>경상대학교 컴퓨터과학과&nbsp;&nbsp;|&nbsp;&nbsp;2020학년도 웹프로그래밍</p>
+			</div>
+		</div>
+	</body>
+</html>

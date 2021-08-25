@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+			<link rel="stylesheet" href="css/style.css" />
+
+        <link href="./css/index.css" rel='stylesheet' type="text/css">
+        <link href="./css/for_map.css" rel='stylesheet' type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+        <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+        <style>
+            .title_x{
+                font-family: "NotoSansKR";
+            }
+            .gomypage{
+                background: url(./css/icon/makemyplan.png) no-repeat;
+    height: 60px;
+    background-size: cover;
+    border-style: none;
+            }
+            #container_ {
+            overflow: hidden;
+            height: 860px;
+            position: relative;
+            width: 100%;
+            }
+            
+            #mapWrapper {
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+            }
+            
+            #rvWrapper {
+                width: 50%;
+                height: 100%;
+                top: 0;
+                right: 0;
+                position: absolute;
+                z-index: 0;
+            }
+            
+            #container_.view_roadview #mapWrapper {
+                width: 50%;
+            }
+            
+            #roadviewControl {
+                position: absolute;
+                right:0;
+                top: 5px;
+                width: 42px;
+                height: 42px;
+                z-index: 1;
+                cursor: pointer;
+                background: url(https://t1.daumcdn.net/localimg/localimages/07/2018/pc/common/img_search.png) 0 -450px no-repeat;
+            }
+            
+            #roadviewControl.active {
+                background-position: 0 -350px;
+            }
+            
+            #close {
+                position: absolute;
+                padding: 4px;
+                top: 5px;
+                left: 5px;
+                cursor: pointer;
+                background: #fff;
+                border-radius: 4px;
+                border: 1px solid #c8c8c8;
+                box-shadow: 0px 1px #888;
+            }
+            
+            #close .img {
+                display: block;
+                background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/rv_close.png) no-repeat;
+                width: 14px;
+                height: 14px;
+            }
+            #mapwrap {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category,
+        .category * {
+            margin: 0;
+            padding: 0;
+            color: #000;
+        }
+        
+        .category {
+            position: absolute;
+            overflow: hidden;
+            top: 200px;
+            right: 10px;
+            width: 110px;
+            height: 50px;
+            z-index: 10;
+            border: 1px solid black;
+            font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+            font-size: 12px;
+            text-align: center;
+            background-color: #fff;
+        }
+        
+        .category .menu_selected {
+            background: #FF5F4A;
+            color: #fff;
+            border-left: 1px solid #915B2F;
+            border-right: 1px solid #915B2F;
+            margin: 0 -1px;
+        }
+        
+        .category li {
+            list-style: none;
+            float: left;
+            width: 50px;
+            height: 45px;
+            padding-top: 5px;
+            cursor: pointer;
+        }
+        
+        .category .ico_comm {
+            display: block;
+            margin: 0 auto 2px;
+            width: 22px;
+            height: 26px;
+            background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png') no-repeat;
+        }
+        
+        .category .ico_destination {
+            background-position: -10px 0;
+        }
+        
+        .category .ico_gas_station {
+            background-position: -10px -36px;
+        }
+        
+        .category .ico_restaurant {
+            background-position: -10px -72px;
+        }
+        .make_plan{
+            width: 655px;
+  height: 65px;
+  opacity: 0.7;
+  border-radius: 21px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+  position: absolute;
+  left: 920px;
+
+    top: 80px;
+    padding: 5px;
+        }
+        </style>
+
+    </head>
+    <body>
+        <div id="header" style="height: 173px;">
+			<div class="container">
+				<div id="logo">
+					<h3>경상남도 방방곡곡 </h3>
+				</div>
+				<nav id="nav">
+					<ul>
+						<li  style="margin-right:10px;"><a href="index.html">Homepage</a></li>
+						<li class="active"><a href="web_test.html">지 도</a>
+			 			</li>
+                         <li><a href="jinju_si.html">관 광 명 소</a>
+							<ul>
+								<li><br/></li>
+								<li><a href="geoje_si.html">거제시</a></li>
+								<li><a href="jinju_si.html">진주시</a></li>
+								<li><a href="changwon_si.html">창원시</a></li>
+								<li><a href="tongyong_si.html">통영시</a></li>
+         					</ul>
+						</li>
+						<li><a href="geoje_si_food.html">먹 거 리</a>
+							<ul>
+                                <li><br/></li>
+								<li><a href="geoje_si_food.html">거제시</a></li>
+								<li><a href="jinju_si_food.html">진주시</a></li>
+								<li><a href="changwon_si_food.html">창원시</a></li>
+								<li><a href="tongyong_si_food.html">통영시</a></li>
+         					</ul>
+						</li>
+						<li><a href="info.html">I N F O</a></li>
+					</ul>
+
+				</nav>
+			</div>
+		</div>
+    <div id="container_">
+        <div id="rvWrapper">
+            <div id="roadview" style="width:100%;height:100%"></div>
+            <div id="close" title="로드뷰닫기" onclick="closeRoadview()"><span class="img"></span></div>
+
+        </div>
+        <div id="mapWrapper">
+            <div id="map" style="width:100%;height:100%"></div>
+            <div id="roadviewControl" onclick="setRoadviewRoad()"></div>
+
+            
+        </div>
+    </div>
+    <div id="pageInfo">
+        <div id="pageInfo_1">
+            <span id="footerTitle"><strong>경상남도 방방곡곡</strong></span>
+        </div>
+        <div id="pageInfo_2">
+            <p>경상대학교 컴퓨터과학과&nbsp;&nbsp;|&nbsp;&nbsp;2020학년도 웹프로그래밍</p>
+        </div>
+    </div>
+    </div>
+        <ul class="container__" style="background-color: rgba( 0, 0, 0, 0.5 );">
+            <li><div id ="explain"></div></li>
+            <li><div class="done"><h3 style="width: 169px;
+                height: 37px;
+                font-family: NotoSansKR;
+                font-size: 25px;
+                font-weight: 500;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 1.48;
+                letter-spacing: 0.45px;
+                color: #ffffff;">계획</h3></div></li>
+        <ul>
+    </div>
+    
+
+    
+    <script src="./js/map.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=1cefd976ef733632b7a0f894d71c953a"></script>
+
+
+    <script>
+        var overlayOn = false;  // 지도위에 로드뷰 오버레이가 추가된 상태 가지고 있을 변수
+		var container_ = document.getElementById('container_');
+        var mapWrapper = document.getElementById('mapWrapper');
+        var mapContainer = document.getElementById('map');
+        var rvContainer = document.getElementById('roadview');
+        var rv = new kakao.maps.Roadview(rvContainer);
+        // 좌표로부터 로드뷰 파노라마 ID를 가져올 로드뷰 클라이언트 객체를 생성합니다 
+        var rvClient = new kakao.maps.RoadviewClient();
+
+        // 로드뷰에 좌표가 바뀌었을 때 발생하는 이벤트를 등록합니다 
+        kakao.maps.event.addListener(rv, 'position_changed', function() {
+
+            // 현재 로드뷰의 위치 좌표를 얻어옵니다 
+            var rvPosition = rv.getPosition();
+
+            // 지도의 중심을 현재 로드뷰의 위치로 설정합니다
+            map.setCenter(rvPosition);
+
+            // 지도 위에 로드뷰 도로 오버레이가 추가된 상태이면
+            if (overlayOn) {
+                // 마커의 위치를 현재 로드뷰의 위치로 설정합니다
+                marker.setPosition(rvPosition);
+            }
+        });
+        var clickedOverlay =null;
+        // // ===== myPage/test1 보내는 부분 =====
+        // function goForm(){
+        //     alert('추가된 항목이 없습니다.');
+        // }
+
+        // ===== 지도의 중심을 잡는 부분 =====
+        var overlayOn = false;  // 지도위에 로드뷰 오버레이가 추가된 상태 가지고 있을 변수
+		var container_ = document.getElementById('container_');
+        var mapWrapper = document.getElementById('mapWrapper');
+        var mapContainer = document.getElementById('map');
+        var rvContainer = document.getElementById('roadview');
+        var mapContainer = document.getElementById('map');
+        var applyList = [];
+        var mapCenter = new kakao.maps.LatLng(34.828031883943446,   128.40425613806852);   
+		var options = {
+			center: mapCenter,
+			level: 10
+        };
+		var map = new kakao.maps.Map(mapContainer, options);
+
+
+        //데이터 넣는 부분
+
+        var  positions=[ 
+{    title:'굿데이뮤지엄',    addr:'경상남도 창원시 마산회원구 봉암공단2길 22',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=63f595b3-d9cc-430b-85d4-1194caa14cef&big_category=A02&mid_category=A0204&big_area=36',    latlng: new kakao.maps.LatLng(35.2186173325067,   128.597773623416)},{    title:'창원해양공원',    addr:'경상남도 창원시 진해구 명동로 62',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=798991e0-4e6e-4ffc-b7ee-e3b1363a5bf8&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(35.091990621818475,   128.7199146902429)},{    title:'소쿠리섬',    addr:'경상남도 창원시 진해구 명동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=cc573d7f-037e-43db-9d41-1e2f8de70a72&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.090196281363,   128.719596310488)},{    title:'장복산조각공원',    addr:'경상남도 창원시 진해구 장복산길 56-42',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=38fbd57b-22d4-4865-be1e-349a575b2577&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(35.174387948584105,   128.66470508709)},{    title:'창원솔라타워',    addr:'경상남도 창원시 진해구 명동로 62',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=5a575c3e-3fd1-4d6b-928c-8260a317667a&big_category=A02&mid_category=A0205&big_area=36',    latlng: new kakao.maps.LatLng(35.091990621818475,   128.7199146902429)},{    title:'팔용산 돌탑',    addr:'경남 창원시 마산회원구 봉암동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=7d61a04f-4362-432d-baba-1f7eee6ac8e3&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.231035968763386,   128.60841223558302)},{    title:'마산 오동동 아구찜거리',    addr:'경상남도 창원시 마산합포구 아구찜길 20',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=daa02812-bcfb-496a-8b74-3d006a4649b3&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.20638918722629,   128.578555228116)},{    title:'우도',    addr:'경상남도 창원시 진해구 우도로 5',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=b45f2eb2-dd85-413c-b353-3aebab0304ec&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.0885403090667,   128.722228096848)},{    title:'창동예술촌',    addr:'경상남도 창원시 마산합포구 오동서6길 24',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=ae86519b-2abc-4187-9ba1-ff317eae63e2&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.207043877743885,   128.57465000540392)},{    title:'의림사 삼층석탑',    addr:'경상남도 창원시 마산합포구 진북면 의림로 382',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=9dae346c-dd09-4115-a162-901139e3d860&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.138562375353,   128.439270558843)},{    title:'진해현관아 및 객사유지',    addr:'경상남도 창원시 마산합포구 진동면 성산길 54',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=15fbc8b3-d38a-41da-a48f-36eb6c2e5648&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.1152403196917,   128.487999120024)},{    title:'불곡사(창원)',    addr:'경상남도 창원시 성산구 대암로 55',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=7741e17d-19dc-4c72-8f4d-c40c02f135e8&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.2157708661503,   128.701613433617)},{    title:'웅천왜성',    addr:'경상남도 창원시 진해구 남문동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=73629af6-adea-46a8-b3ef-5b67feea2c8a&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.0961828307912,   128.761605629004)},{    title:'창원 진례산성',    addr:'경상남도 창원시 성산구 토월동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=97cca664-a00e-440a-bac7-a60d13986f86&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.22757134553329,   128.71578650089398)},{    title:'창원단감테마공원',    addr:'경상남도 창원시 의창구 동읍 동읍로359번길 27',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=8f76930a-7467-4dc6-ac31-dea9f5692d2a&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(35.2985497781342,   128.663471824584)},{    title:'빗돌배기마을(송등)',    addr:'경상남도 창원시 의창구 대산면 진산대로505번길 92',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=6f4ea079-a319-419c-8944-d36413cb899f&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.344309503511,   128.70230337139947)},{    title:'저도(창원)',    addr:'경상남도 창원시 마산합포구 구산면',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=86c9eb55-ef63-410d-b075-6a4f4e46f270&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.077122590005715,   128.5870460366396)},{    title:'정법사(창원)',    addr:'경상남도 창원시 마산합포구 몽고정길 46',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=580eb248-1adb-4fd3-8414-37b662fb8608&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.2065118061006,   128.57218008023702)},{    title:'우곡사(창원)',    addr:'경상남도 창원시 의창구 동읍 자여로 459',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=e385751c-ea4d-4d24-958f-4d1656306935&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.24896846747353,   128.71657349153404)},{    title:'진해내수면 환경생태공원',    addr:'경상남도 창원시 진해구 여명로71번길 65',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=6d475946-8b18-4378-a467-bf71d1b4471d&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.16403427529199,   128.66000317787606)},{    title:'진해 행암마을',    addr:'경상남도 창원시 진해구 행암로 223',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=5bcadc6f-3c16-4854-854a-c78661f76f3e&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.115604243928104,   128.70091402129998)},{    title:'주남저수지(철새도래지)',    addr:'경상남도 창원시 의창구 동읍 주남로101번길 26',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=052cb36a-2fc7-4872-9e32-27b7ba4a647b&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.3121183572977,   128.670012229818)},{    title:'제황산공원',    addr:'경상남도 창원시 진해구 중원동로 52',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=c0f0a476-6f72-4356-91b7-ef724d81279b&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(35.149122213701894,   128.663571372484)},{    title:'진해보타닉뮤지엄',    addr:'경상남도 창원시 진해구 진해대로1137번길 89',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=744e1ab4-2079-4761-9c6b-72bd62956dd7&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.1300560488274,   128.717546767398)},{    title:'경화역 벚꽃길',    addr:'경상남도 창원시 진해구 진해대로 649',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=1940d573-bf48-44c2-acff-28cf92880463&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.1590558394274,   128.686621531308)},{    title:'실리도',    addr:'경상남도 창원시 마산합포구 구산면 실리섬길 25',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=6b63b570-0460-4700-adb7-73ace5b1ea31&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.0637469701952,   128.637020703311)},{    title:'여좌천(벚꽃명소)',    addr:'경상남도 창원시 진해구 여좌동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=89de9fec-49aa-4941-b962-ed133e3d8a1c&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.1622297838177,   128.660414261631)},{    title:'적석산',    addr:'경상남도 창원시 마산합포구 진전면 적석산길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=beb506f7-e8ce-4735-a1d1-1f5a2b06e6f7&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.12658249566876,   128.37661343754314)},{    title:'마금산원탕',    addr:'경상남도 창원시 의창구 북면 천주로 1167',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=f51ef2bc-7d2b-4013-9b7d-7e9e11b13c50&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(35.3546520564984,   128.609416855908)},{    title:'가고파 꼬부랑길 벽화마을',    addr:'경상남도 창원시 마산합포구 성호서7길 15-8',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=07446a90-5bc9-411e-b6f1-50dd92b68b4b&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.207814980376504,   128.569820183456)},{    title:'국립 3·15 민주묘지',    addr:'경상남도 창원시 마산회원구 3·15성역로 75',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=f49a2151-b2a7-4e0e-826c-d9ce494d084a&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.25280899732985,   128.58751256202132)},{    title:'창원의 집',    addr:'경상남도 창원시 의창구 사림로16번길 59',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=fc3a8e02-f28d-4a64-8404-64c422f7dea7&big_category=A02&mid_category=A0206&big_area=36',    latlng: new kakao.maps.LatLng(35.2444572258178,   128.681581938104)},{    title:'창원 편백 치유의 숲',    addr:'경상남도 창원시 진해구 장복산길 47',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=15c359e3-1ebd-4b65-ae56-056acee04511&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.1720893520796,   128.658827882145)},{    title:'용지호수공원',    addr:'경상남도 창원시 의창구 용지로169번길 26',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=686c2d01-650d-4262-b7ac-9a07edaf3368&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.2320310869152,   128.681852630317)},{    title:'마산로봇랜드',    addr:'경상남도 창원시 마산합포구 구산면 로봇랜드로 250',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=6f14c3a3-f2ae-4cae-819b-69f002e75386&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.077122590005715,   128.5870460366396)},{    title:'도남서원',    addr:'경상남도 창원시 의창구 동읍 동읍로401번길 68',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=991ef10a-47b2-44f2-bfbc-ba76b5fbbb02&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.29868884827229,   128.65925340736655)},{    title:'창원 성산 패총',    addr:'경상남도 창원시 성산구 성산패총로 137',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=9d1f1eee-c65f-4429-9b0f-7e672280e79e&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.208786670649204,   128.679787421061)},{    title:'망산도·유주암·유주비각',    addr:'경상남도 창원시 진해구',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=733dea14-db04-4ec1-9852-42af2ac0c4bc&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.1471878451042,   128.685630440299)},{    title:'월영대',    addr:'경상남도 창원시 마산합포구 밤밭고개로 442',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=ad3b107f-8699-4932-a23b-9145dcae708a&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.180066423827,   128.557347721127)},{    title:'몽고정',    addr:'경상남도 창원시 마산합포구 자산동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=b5e772ae-58e2-415a-80f9-1e5c35564dfd&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.203117287926396,   128.568741544685)},{    title:'삼정자동마애불',    addr:'경상남도 창원시 성산구 삼정자로 79',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=e1690bce-2154-4a67-89de-f5df476ae69b&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.200048989456796,   128.71497017480573)},{    title:'창원향교',    addr:'경상남도 창원시 의창구 의안로59번길 6',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=f54772bf-9739-4fd4-a446-10b1cc193bc1&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.2678292085618,   128.623407102605)},{    title:'산호공원(용마공원) 시(詩)의 거리',    addr:'경상남도 창원시 마산합포구 산호동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=f5edd600-7140-45c8-bd19-74d4f4a5cb71&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.2148375007662,   128.578960398262)},{    title:'부재산방',    addr:'경상남도 창원시 마산합포구 진전면 미천2길 148',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=3426cd64-34c3-49f8-aafb-2b4459a229da&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.1522818900847,   128.406854902064)},{    title:'웅천안골왜성',    addr:'경상남도 창원시 진해구 안골동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=3704bf15-d018-4b09-9b44-d02387b2ca7a&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.0928247782959,   128.797523519659)},{    title:'황포돛대 노래비',    addr:'경상남도 창원시 진해구 남영로 373',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=ca9e16d9-1e91-46d5-acba-83aa12544bc4&big_category=A02&mid_category=A0205&big_area=36',    latlng: new kakao.maps.LatLng(35.103757762449305,   128.779301711839)},{    title:'서원곡유원지',    addr:'경상남도 창원시 마산합포구 교방동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=97328850-e251-4770-8cc9-246670eeb276&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(35.2089760072834,   128.553876252945)},{    title:'산호공원',    addr:'경상남도 창원시 마산합포구 용마산길 142',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=8ee76033-8967-41ad-a4a0-ba8b77239f49&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(35.2138545005386,   128.583839135141)},{    title:'성흥사(진해)',    addr:'경상남도 창원시 진해구 대장로 273',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=6bfc038d-7848-4b32-837c-97dad434f85c&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.1465524317527,   128.778231637036)},{    title:'충혼탑',    addr:'경상남도 창원시 의창구 충혼로 29',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=844c7190-3fdd-4fbc-aacb-883e30f70c50&big_category=A02&mid_category=A0205&big_area=36',    latlng: new kakao.maps.LatLng(35.230233938766105,   128.657168315597)},{    title:'창원 진해우체국',    addr:'경상남도 창원시 진해구 백구로 40',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=7c291ede-ccea-462f-b089-a239860e2f68&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.1488188599643,   128.66045774023502)},{    title:'대광사(창원)',    addr:'경상남도 창원시 진해구 진해대로 303',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=8a95b1fd-f1c3-4530-a4d8-e464d37c8488&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.1713310925616,   128.658391010656)},{    title:'두곡서원(창원)',    addr:'경상남도 창원시 마산회원구 두곡길 54',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=f9c57b53-fa19-4143-8348-e115b64f9717&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.2391480091372,   128.54892838740102)},{    title:'운암서원(창원)',    addr:'경상남도 창원시 의창구 사화로 311',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=91ee69a5-8642-4094-8762-717409575123&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.241029575926,   128.635782449831)},{    title:'저산서원(창원)',    addr:'경상남도 창원시 의창구 대산면 유등로332번길 42-7',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=1fb79fc0-b4ca-424a-9ae9-6c9d88f405ff&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.341661532306794,   128.745657009294)},{    title:'첨두서원',    addr:'경상남도 창원시 마산회원구 내서읍 삼계로 63',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=d24c35f5-ed09-416b-831c-29f92d4ce838&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.2314185397471,   128.49799126691602)},{    title:'추산근린공원',    addr:'경상남도 창원시 마산합포구 문신길 147',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=fc899cb1-4174-4e71-b4a2-fa37f4edfd35&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(35.2063153567667,   128.568983145071)},{    title:'관해정',    addr:'경상남도 창원시 마산합포구 관해정길 17',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=0fb1fb52-a406-4031-98a2-291eaceb2d6f&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.2112364777454,   128.561707233952)},{    title:'마산역(철도체험학습장)',    addr:'경상남도 창원시 마산회원구 마산역광장로 18',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=26e111a2-d0f8-42c7-8b5f-b89f3f9c7cb8&big_category=A02&mid_category=A0204&big_area=36',    latlng: new kakao.maps.LatLng(35.236209189149896,   128.577177640546)},{    title:'성덕암(창원)',    addr:'경상남도 창원시 마산합포구 성호서7길 46',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=ac787374-84c6-4da2-a015-18356be18cca&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.20715158779385,   128.5686445586073)},{    title:'오체향마을',    addr:'경상남도 창원시 의창구 북면 구룡로 79-15',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=108e655f-8849-4843-ba88-b5a03592e8ef&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.288557331041204,   128.618562539231)},{    title:'회원현성지',    addr:'경상남도 창원시 마산합포구 서원곡2길 119',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=33d80ae6-6b6e-4cbd-a719-922672a952d0&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.2122412931732,   128.554500730409)},{    title:'성주사(창원)',    addr:'경상남도 창원시 성산구 곰절길 191',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=18e32f99-6784-4622-b0d0-25dc817dcaa4&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.17669151874231,   128.71761855746252)},{    title:'오동동 통술거리',    addr:'경상남도 창원시 마산합포구 오동동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=b322c6da-2c9d-45c4-a0d1-38d6dc8ef619&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.207043877743885,   128.57465000540392)},{    title:'부림시장 먹자골목',    addr:'경상남도 창원시 마산합포구 3·15대로 352',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=2fdf40a4-cdc5-4319-acce-3060d8bf9035&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.2057886392719,   128.573457443657)},{    title:'임항선 그린웨이',    addr:'경상남도 창원시 마산합포구 반월동5길 38',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=8f33ff52-d999-4e7e-9221-091fae4c25e6&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(35.188749533354134,   128.5638094250766)},{    title:'장어구이 거리',    addr:'경상남도 창원시 마산합포구 수산1길 74',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=7bd0cf0c-6769-4470-af5a-70806f4b1653&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.19985780182034,   128.57572781524655)},{    title:'군항마을 역사길',    addr:'경상남도 창원시 진해구 충장로 71',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=3dd1763b-6bca-477e-a905-14a806f36c56&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.1534417435546,   128.660095194447)},{    title:'창원 장미공원',    addr:'경남 창원시 성산구 가음동 31',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=6648506b-7ebb-42df-9256-0e57717bb796&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(35.2066812467632,   128.691449155663)},{    title:'진해근대문화투어(군항문화탐방길)',    addr:'경상남도 창원시 진해구 충장로 25',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=b9d4223a-05d4-4c3c-b8b7-2138306fb914&big_category=A02&mid_category=A0204&big_area=36',    latlng: new kakao.maps.LatLng(35.1537041301373,   128.65435489323602)},{    title:'주남저수지 생태학습관',    addr:'경상남도 창원시 의창구 동읍 주남로101번길 26',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=1f654fd4-8218-47b3-8984-c7567b3eed96&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.3121183572977,   128.670012229818)},{    title:'대끼리 상남시장',    addr:'경상남도 창원시 성산구 마디미로 28',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=cb163e1b-ce34-4e57-b190-bdf10ca22d60&big_category=A04&mid_category=A0401&big_area=36',    latlng: new kakao.maps.LatLng(35.2221975600039,   128.683367332807)},{    title:'대동백화점',    addr:'경상남도 창원시 성산구 동산로 115',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=4f33fff1-7315-485e-9e29-a914d211b45d&big_category=A04&mid_category=A0401&big_area=36',    latlng: new kakao.maps.LatLng(35.21980707233457,   128.6896733395242)},{    title:'달천계곡(창원)',    addr:'경상남도 창원시 의창구 북면 달천길 145',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=c2ccd5a6-e242-415e-b0dc-a1db5c7bd062&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.2836770543703,   128.596813233911)},{    title:'성흥사 계곡',    addr:'경상남도 창원시 진해구 대장로 273',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=f92fd38f-2eab-4782-841c-2607039a8326&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.1465524317527,   128.778231637036)},{    title:'삼귀해안',    addr:'경상남도 창원시 성산구 삼귀로 263',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=29ffe74f-f7bb-47a3-bad8-c39a548241c6&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.16377440174594,   128.60057193896264)},{    title:'수치해안',    addr:'경상남도 창원시 진해구 명제로',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=d7fcedc7-b657-4f21-996a-2c0ebd620fe0&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.11014661675564,   128.71884739482388)},{    title:'인곡리모과나무',    addr:'경상남도 창원시 마산합포구 진북면 의림로 382',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=eb6a7e90-d84f-427b-bfcc-8cbf0d55d845&big_category=A01&mid_category=A0102&big_area=36',    latlng: new kakao.maps.LatLng(35.138562375353,   128.439270558843)},{    title:'창원 신방리 음나무 군',    addr:'경상남도 창원시 의창구 동읍 동읍로',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=8ed6fee1-3138-4848-8cba-a790d77e606c&big_category=A01&mid_category=A0102&big_area=36',    latlng: new kakao.maps.LatLng(35.2775565312993,   128.683171600182)},{    title:'마금산',    addr:'경상남도 창원시 의창구 북면 신리길30번길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=73d96629-1de9-4767-8cc3-68c6fe02f22d&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.3495376604951,   128.605285021845)},{    title:'시루봉',    addr:'경남 창원시 진해구 자은동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=d201f164-8289-434b-b27e-f89565ca2ca0&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.1458148113933,   128.70619911625099)},{    title:'백월산',    addr:'경상남도 창원시 의창구 북면 마산길72번길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=d9faf21a-9222-40ec-a216-4edaa2202b57&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.33563043024922,   128.62890405890604)},{    title:'정병산',    addr:'경상남도 창원시 의창구 동읍 자여로',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=e54850e4-f57f-4b23-89c2-71fcda7cfb87&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.27620170913061,   128.70186903677111)},{    title:'구복마을',    addr:'경남 창원시 마산합포구 구산면 구복리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=bb66406b-8be9-4515-aea7-bc890d5cbcd9&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.0617372335246,   128.556100789308)},
+{    title:'장승포항',    addr:'경상남도 거제시 장승로 138',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=f4953178-dfb8-4f63-bc8e-cb39c989df2d&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.866327133609,   128.724653613073)},{    title:'구조라해수욕장',    addr:'경상남도 거제시 일운면',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=db9f7bba-a8ec-43b3-8f30-6c6ac6df575d&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.8069653420412,   128.692890014526)},{    title:'거제어촌민속전시관',    addr:'경상남도 거제시 일운면 지세포해안로 41',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=73b9bf3e-cd82-4e6f-95d3-41488822e445&big_category=A02&mid_category=A0206&big_area=36',    latlng: new kakao.maps.LatLng(34.8346704483788,   128.701672589202)},{    title:'거제 어구낚시마을',    addr:'경상남도 거제시 둔덕면 어구길 2-3',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=14ac0471-46df-4fb4-bae0-963c4e4a66d7&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.8206192990976,   128.506064466117)},{    title:'덕포해수욕장',    addr:'경상남도 거제시 덕포5길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=5d2c5fef-eddb-415a-a63d-f3967e117d0c&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.9125080903027,   128.708542480094)},{    title:'농소몽돌해변',    addr:'경상남도 거제시 장목면 거제북로',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=7797a460-ea98-4251-b48d-28d8e7a29189&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.00791120571364,   128.7117807193145)},{    title:'황포해수욕장',    addr:'경상남도 거제시 장목면 황포1길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=816102c8-0a7f-4902-b801-57221b6247d8&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.02863927013832,   128.67860054318948)},{    title:'흥남해수욕장',    addr:'경상남도 거제시 장목면 흥남길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=37a2426b-8bd5-4f13-8896-960136908a85&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.9597833343006,   128.715001397566)},{    title:'와현모래숲해변',    addr:'경상남도 거제시 일운면 와현해변길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=594fc45d-8435-4f4a-aae3-1da3f8626558&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.812672379735496,   128.708607262648)},{    title:'명사해수욕장',    addr:'경상남도 거제시 남부면 명사해수욕장길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=de924b73-085f-46c2-a44f-6b00a0916eb0&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7285023979619,   128.60538628263902)},{    title:'여차해변 (여차몽돌해수욕장)',    addr:'경상남도 거제시 남부면 여차길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=ea9dc029-eced-4409-a10d-bc338f24a8f6&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.713895180352004,   128.62596449509502)},{    title:'구영해수욕장',    addr:'경남 거제시 장목면 거제북로',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=2b3c243b-c114-4cb1-a0f9-af9d77d928f5&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.00791120571364,   128.7117807193145)},{    title:'죽림해수욕장',    addr:'경상남도 거제시 거제면 오수리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=3ae10d63-d879-4d65-b945-86e3fcbe1dd0&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.8375154203666,   128.586149246175)},{    title:'함목몽돌해변',    addr:'경상남도 거제시 남부면 함목길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=014eed7b-48b4-46d2-ba5c-05f6babb0bb4&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7399765713562,   128.652897717598)},{    title:'물안해수욕장',    addr:'경상남도 거제시 하청면 칠천로',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=d1a917c3-5fbc-4f7d-87cc-282bc17026e8&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.9792551251372,   128.642441399067)},{    title:'거제씨월드',    addr:'경상남도 거제시 일운면 지세포해안로 15',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=ea9198c9-4244-4a49-b900-99110bda2680&big_category=A02&mid_category=A0206&big_area=36',    latlng: new kakao.maps.LatLng(34.8358811032706,   128.701461400376)},{    title:'한화리조트 거제 벨버디어',    addr:'경상남도 거제시 장목면 거제북로 2501-40',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=21c62f2a-8ca9-48b4-bb44-075543b4ab3d&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.00791120571364,   128.7117807193145)},{    title:'지심도',    addr:'경상남도 거제시 일운면 지심도길 31-2',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=689f30ec-530d-45c5-867a-d124ab7935b8&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.8171399075149,   128.74938345274902)},{    title:'이수도(거제)',    addr:'경상남도 거제시 장목면 이수도길 10',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=e96ae311-7d62-4347-9942-e2d0d9066564&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.96798287526425,   128.7249907887996)},{    title:'외포항',    addr:'경상남도 거제시 장목면 외포5길 48',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=eafdc1c9-a8bc-4326-9919-74fad89d32dc&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.9405268340409,   128.717196375059)},{    title:'만골관광농원',    addr:'경상남도 거제시 동부면 북병산로 89-22',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=fdfaa4ea-c92e-4ba5-9a35-2fd510bc0933&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.8138460375248,   128.646237086892)},{    title:'가배량성',    addr:'경상남도 거제시 동부면 가배리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=789100e9-cae1-4001-867e-f6c80d3a30ba&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.7788996557027,   128.57555777659)},{    title:'고현성',    addr:'경상남도 거제시 고현동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=79929956-b544-4336-b4e8-7727142d4603&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.8714198993781,   128.607967509709)},{    title:'거제 알로에테마파크',    addr:'경상남도 거제시 거제면 거제남서로 3937',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=6d38c3e5-4a19-44d4-8288-77ad9c171e14&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.8356907122122,   128.560268819356)},{    title:'학동흑진주몽돌해변',    addr:'경상남도 거제시 동부면 학동6길 18-1',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=83b8305a-c8ec-48b3-aa7f-39da82ce7ced&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7746677942101,   128.641526158522)},{    title:'거제정글돔',    addr:'경상남도 거제시 거제면 거제남서로 3595',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=db820688-14d0-44e7-9f39-82bea9142547&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.85673294234183,   128.57822917272344)},{    title:'도장포어촌체험마을',    addr:'경상남도 거제시 남부면 도장포1길 76',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=4c5f178b-5a6c-45e8-b3ce-c4a09b749bd8&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.7434336778283,   128.662448415932)},{    title:'거제도 해금강',    addr:'경상남도 거제시 남부면 갈곶리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=e0eeb63a-cdb9-48a3-9c4a-19784a66a32c&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7446210175676,   128.663149179091)},{    title:'구천댐(구천저수지)',    addr:'경상남도 거제시 동부면 구천리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=ef195528-1d92-4499-b965-76758d91e332&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.78569962483718,   128.62594376775536)},{    title:'외도 보타니아',    addr:'경상남도 거제시 일운면 외도길 17',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=9719ab29-d06d-4e47-b557-f0698c35a2cd&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.7692963521554,   128.711653256387)},{    title:'거제도 포로수용소 유적공원',    addr:'경상남도 거제시 계룡로 61',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=4b6fff1b-1f3f-4203-8724-08333c016e5b&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.87637981231331,   128.62536983509492)},{    title:'계룡산 온천',    addr:'경상남도 거제시 거제중앙로 1779-1',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=ff440690-90ba-4a59-b1b1-7c361ec122f7&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.8776281551973,   128.628259783218)},{    title:'신선대 전망대',    addr:'경상남도 거제시 남부면 갈곶리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=161ed76a-b7d9-4727-86f6-20ea3249deca&big_category=A02&mid_category=A0205&big_area=36',    latlng: new kakao.maps.LatLng(34.7446210175676,   128.663149179091)},{    title:'외도 구조라 유람선',    addr:'경상남도 거제시 일운면 구조라로 38',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=11c1ac5d-7b17-42b3-b835-14b87bcd38b1&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.805223463954,   128.69474691175898)},{    title:'거제 대우조선해양 옥포조선소',    addr:'경상남도 거제시 거제대로 3370',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=320a45a3-e192-4cfe-b983-3495c425907f&big_category=A02&mid_category=A0204&big_area=36',    latlng: new kakao.maps.LatLng(34.8816714920307,   128.725323072687)},{    title:'매미성',    addr:'경상남도 거제시 장목면 복항길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=3b212f0e-cc18-47cc-8c5d-b57125a32de7&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.9670907734631,   128.705011248077)},{    title:'해금강유람선',    addr:'경상남도 거제시 남부면 해금강로 270',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=ea760ab7-d7e2-41ab-9434-ac1ca569d3b2&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.737795818017304,   128.673196654236)},{    title:'장사도 유람선',    addr:'경상남도 거제시 남부면 근포1길 71',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=e74fc51d-c636-4216-a973-fc4d595aa57b&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.7204358767083,   128.586254249611)},{    title:'장사도 가배 유람선',    addr:'경상남도 거제시 동부면 거제남서로 2271-1',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=53056aa9-8e05-40a8-9192-c50e2d52160d&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.7851050940378,   128.56878906057)},{    title:'여차 홍포전망대',    addr:'경상남도 거제시 남부면 다포리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=c756b870-0a34-4bb4-8c39-824797091995&big_category=A02&mid_category=A0205&big_area=36',    latlng: new kakao.maps.LatLng(34.713895180352004,   128.62596449509502)},{    title:'거제도해수보양온천',    addr:'경상남도 거제시 수양로 507',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=8b914487-4e68-43d7-b3a8-ede5bdcf9d63&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.89162855040873,   128.63470417688242)},{    title:'포로수용소유적박물관',    addr:'경상남도 거제시 계룡로 61',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=14bc2f49-9a1a-4317-9f8a-4de08bfaa304&big_category=A02&mid_category=A0206&big_area=36',    latlng: new kakao.maps.LatLng(34.87637981231331,   128.62536983509492)},{    title:'옥포대첩기념공원',    addr:'경상남도 거제시 팔랑포2길 87',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=55a35d49-5e81-415b-90b8-d4dde37fcfd0&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.902107670141696,   128.7144225419)},{    title:'거제맹종죽테마공원',    addr:'경상남도 거제시 하청면 거제북로 700',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=7cd73718-7bdd-4707-b2d8-1647f04c65ea&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.967677855871,   128.650526691036)},{    title:'칠천량해전공원전시관',    addr:'경상남도 거제시 하청면 칠천로 265-39',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=98fa1002-a6bb-4efe-b993-421202e4b93b&big_category=A02&mid_category=A0206&big_area=36',    latlng: new kakao.maps.LatLng(34.9775943974378,   128.628975023876)},{    title:'거제 관광모노레일',    addr:'경상남도 거제시 계룡로 61',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=be85397a-f0f5-491e-b842-c909598ba353&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.87637981231331,   128.62536983509492)},{    title:'바람의 언덕',    addr:'경상남도 거제시 남부면 도장포마을',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=90c5cf0c-ff79-4b64-a3b9-afa02a465e46&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.741446039632,   128.663592150179)},{    title:'거제자연휴양림',    addr:'경상남도 거제시 동부면 거제중앙로 325',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=026855f1-8866-43f3-834a-9772a94fe403&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.78569962483718,   128.62594376775536)},{    title:'장목진객사',    addr:'경상남도 거제시 장목면 장목5길 9',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=b2f2e483-a6a3-47f5-99db-af0e2f5943b9&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.984944684376195,   128.679007826528)},{    title:'청곡리지석묘',    addr:'경상남도 거제시 사등면 청곡리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=b4ce3447-63e1-4da7-abda-52d4e9db32c9&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.9010704751933,   128.510586376957)},{    title:'거제향교',    addr:'경상남도 거제시 거제면 기성로7길 10',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=db7c4b7f-6878-48be-91dd-cc2f5391685f&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.8526195551021,   128.58984594282802)},{    title:'여차,홍포간 해안도로',    addr:'경상남도 거제시 남부면',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=e64f9ed6-1e97-4b32-b07a-c623a64fe817&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7446210175676,   128.663149179091)},{    title:'거제 명진리 느티나무',    addr:'경상남도 거제시 거제면 명진리 220',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=bfb6ff3d-23a0-4a22-9da4-ac454b06ff81&big_category=A01&mid_category=A0102&big_area=36',    latlng: new kakao.maps.LatLng(34.8444662207306,   128.610009836161)},{    title:'거제 외간리 동백나무',    addr:'경상남도 거제시 거제면 외간1길 52',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=f5a0bb40-45d0-44a2-a9e4-d4daddf7bc09&big_category=A01&mid_category=A0102&big_area=36',    latlng: new kakao.maps.LatLng(34.861077192071804,   128.573217821552)},{    title:'산방산비원',    addr:'경상남도 거제시 둔덕면 산방산길 153',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=727f686a-a0c8-40f6-9abf-bde152f2dbb8&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.860369160619605,   128.526667620295)},{    title:'노자산',    addr:'경상남도 거제시 동부면 구천리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=305f08f1-c8e8-4918-8073-9791f139c820&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.78569962483718,   128.62594376775536)},{    title:'산방산(거제)',    addr:'경상남도 거제시 둔덕면 산방리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=5c33ae51-8fa2-4195-a4e8-79dba46016e0&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.860689737571604,   128.538701442661)},{    title:'대금산(거제)',    addr:'경상남도 거제시 장목면',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=8f933542-8738-4765-a6d8-83f81235ac63&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.96808253657398,   128.7049836287088)},{    title:'북병산',    addr:'경상남도 거제시 동부면',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=d424b690-66a1-492c-9644-43ebc1e873a8&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7746677942101,   128.641526158522)},{    title:'공곶이',    addr:'경상남도 거제시 일운면 와현로 257',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=b52b8d8b-11bf-44b9-b1b7-06b0f5aa2e88&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.7998189509018,   128.714849509215)},{    title:'거제 둔덕기성.사등성지.오량성',    addr:'경상남도 거제시 둔덕면 거림리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=ea2fdbe5-4f7d-439b-b376-9ad116115cbb&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.8687586108039,   128.498543349948)},{    title:'거제도',    addr:'경상남도 거제시 거제면 거제도',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=5931b762-2e36-43ff-a13d-43165b4c0efe&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.8609806474228,   128.62954108656402)},{    title:'김영삼 전 대통령 생가',    addr:'경상남도 거제시 장목면 옥포대첩로 743-1',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=795e36a7-f9c5-42d9-a3cc-3f7d9026d515&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.9315858080611,   128.71519773806003)},{    title:'거제 쌍근어촌체험마을',    addr:'경상남도 거제시 남부면 남부해안로 1094',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=3d5dfaed-b97d-4749-bc49-ca81d21d6b25&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.7623948690031,   128.589441842614)},{    title:'거제 계도어촌체험마을',    addr:'경상남도 거제시 사등면 가조로 837',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=59fe1978-9e8c-45a3-9251-c52753e40d2d&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.974852913509004,   128.517546337382)},{    title:'거가대교',    addr:'경상남도 거제시 장목면 유호리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=7e793c0f-1d57-4e53-98b2-739cee3ad9bf&big_category=A02&mid_category=A0205&big_area=36',    latlng: new kakao.maps.LatLng(35.0184740257305,   128.740962807676)},{    title:'거제시농업개발원',    addr:'경상남도 거제시 거제면 거제남서로 3577',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=4bc2e58c-fffa-4d1c-a66a-e407f85a6d17&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.856545699615104,   128.579599976961)},{    title:'노을이 물드는 언덕',    addr:'경상남도 거제시 사등면 가조로 565',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=c391a5bb-1b8e-48ce-8b66-1749423bcd95&big_category=A02&mid_category=A0205&big_area=36',    latlng: new kakao.maps.LatLng(34.95520047516796,   128.51870338525572)},{    title:'거제대교',    addr:'경상남도 거제시 사등면 덕호리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=70fb0690-4721-4d55-b2fd-3580f8fbd9ea&big_category=A02&mid_category=A0205&big_area=36',    latlng: new kakao.maps.LatLng(34.8817159818686,   128.48736000348302)},{    title:'거제 구조라관광어촌마을',    addr:'경상남도 거제시 일운면 구조라로4길 3-1',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=8b4cabd0-9e7d-421e-adbf-3a3aa418067d&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.805284780749695,   128.694485923592)},{    title:'옥녀봉(거제)',    addr:'경상남도 거제시 아주동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=b8703fcc-716e-4adc-a858-f2769faa9ab5&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.8522222509055,   128.69350185467)},{    title:'앵산',    addr:'경상남도 거제시 하청면 석포리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=d98c8507-e855-4eca-b461-64c3e5d34ba8&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.952271394749395,   128.599772142667)},{    title:'외포리 대구탕거리',    addr:'경상남도 거제시 장목면 외포5길 60',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=2f950ee3-8186-48bd-9268-ae4446b87675&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.939343654777105,   128.717758332544)},{    title:'거제 학동리 동백나무 숲 및 팔색조 번식지',    addr:'경남 거제시 동부면 학동리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=24b66ac9-74f6-4482-8921-21f6ed177a74&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7746677942101,   128.641526158522)},{    title:'거제자연예술랜드',    addr:'경남 거제시 동부면 구천리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=138bf4a3-342a-4efa-b2e5-f1e4e5b492bd&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.78569962483718,   128.62594376775536)},{    title:'거제생태문화탐방로(천주교순례길)1',    addr:'경상남도 거제시 일운면 와현리 예구선착장',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=2ac9aeac-80f1-4fbc-934f-689154d9d606&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.8018988174285,   128.71512423141598)},{    title:'거제생태탐방로(양지암등대길)',    addr:'경상남도 거제시 일운면 와현리 예구선착장',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=e2c06e1c-ac18-4c20-a406-f1ff96fcfde8&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.8018988174285,   128.71512423141598)},{    title:'한려해상국립공원(거제)',    addr:'경상남도 거제시 장승포동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=b98c58fd-1419-49d6-94e8-7be06f592d42&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.8663197395544,   128.724666580457)},{    title:'국사봉(거제)',    addr:'경상남도 거제시 수월동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=2e2b2abd-1186-423c-b8d7-6ccccafb16b4&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.8956879259877,   128.66510389547898)},{    title:'가라산',    addr:'경상남도 거제시 남부면 다대리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=f85fbcc4-9c74-4ce8-a7fa-76908f63d309&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7545759486138,   128.623538023371)},{    title:'명사마을',    addr:'경상남도 거제시 남부면 명사1길 12-1',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=134fffb2-1642-4d5e-85de-8c37028ec88f&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.725539026461895,   128.60209333355)},{    title:'학동마을',    addr:'경상남도 거제시 동부면 학동6길 18-1',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=2dc75f5a-4c32-4282-87d9-a001bf1b9cbc&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7746677942101,   128.641526158522)},{    title:'궁임마을',    addr:'경상남도 거제시 장목면 거제북로 2547',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=fe3cd26d-ce38-4cb7-b132-028cddb0e46c&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.0083788596181,   128.703974955392)},{    title:'도장포유람선',    addr:'경상남도 거제시 남부면 도장포1길 55',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=cd6b5e64-524f-4790-ba58-b49c144b70be&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.74202820013086,   128.6626735637699)},{    title:'외도와현유람선',    addr:'경상남도 거제시 일운면 와현해변길 46',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=9396adbf-96ab-4ae5-b976-4691396b5c40&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.8118430935767,   128.70476108753002)},
+{    title:'가뫼골마을',    addr:'경상남도 진주시 명석면 관덕길 174',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=e14d1499-2f8e-4e50-93fa-4f5162596984&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.2586466893629,   128.032338523089)},{    title:'촉석루',    addr:'경상남도 진주시 남강로 626',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=295cfed1-6be9-44b1-af63-a156e8cc06a9&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.1894767009688,   128.08185997390498)},{    title:'진양호',    addr:'경상남도 진주시 판문동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=4434873a-7926-4348-be61-7ceaa69a2d84&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.1766245964282,   128.03688020407)},{    title:'국립진주박물관',    addr:'경상남도 진주시 남강로 626-35',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=2c57b33b-77be-487b-88b3-9bc31f86875f&big_category=A02&mid_category=A0206&big_area=36',    latlng: new kakao.maps.LatLng(35.18899031008654,   128.0768701732019)},{    title:'진주소싸움경기장',    addr:'경상남도 진주시 판문오동길 100',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=9d51a6fb-1131-48e4-8bfb-84abe3d65210&big_category=A03&mid_category=A0302&big_area=36',    latlng: new kakao.maps.LatLng(35.1759506281443,   128.040639041366)},{    title:'진주 중앙유등시장',    addr:'경상남도 진주시 진양호로547번길 8-1',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=df48dfa7-030e-4e72-9920-98b4ff746f4f&big_category=A04&mid_category=A0401&big_area=36',    latlng: new kakao.maps.LatLng(35.1939236667581,   128.08488782248997)},{    title:'두방사(두방암)',    addr:'경상남도 진주시 문산읍 동부로781번길 267',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=aeab5fae-fcad-4bee-af36-8793f2a8ada9&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.187897237148206,   128.191736292146)},{    title:'호국사(진주)',    addr:'경상남도 진주시 남강로 626-71',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=50a64c09-1262-4d4c-8190-d1444bc159c8&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.1876660766805,   128.075881077241)},{    title:'남악서원',    addr:'경상남도 진주시 금곡면 죽곡길 102',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=df92c39b-e7ee-4212-9757-99c44afde4f3&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.0764854738646,   128.178145872284)},{    title:'진주 유수리 백악기화석 산지',    addr:'경상남도 진주시 내동면 유수길75번길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=5ccab47c-e4ba-4c87-a492-5b3c6bbb1cdb&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.1196852417211,   128.00367897043301)},{    title:'의기사와 의암',    addr:'경상남도 진주시 남강로 626',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=2ce8e8d0-68e3-4328-98da-c7bcdab7adf1&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.1894767009688,   128.08185997390498)},{    title:'진주성',    addr:'경상남도 진주시 남강로 626',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=c2e7414e-d4ab-46c0-aed2-39d4b3f55b56&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.1894767009688,   128.08185997390498)},{    title:'강주연못',    addr:'경상남도 진주시 정촌면 예하리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=1bda10af-e4aa-4b8f-9313-bdb3cfac34c8&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.113300128429195,   128.094905247887)},{    title:'경상남도수목원',    addr:'경상남도 진주시 이반성면 수목원로 386',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=eaea51e9-3840-4f00-a255-7df160638b5c&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.1596287493298,   128.294697645237)},{    title:'진양호 공원 (진양호 전망대, 동물원)',    addr:'경상남도 진주시 남강로1번길 130',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=cf979cf3-4d3d-4709-bf58-a6c97bd16668&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(35.1766245964282,   128.03688020407)},{    title:'가호서원',    addr:'경상남도 진주시 이반성면 용암길 59-2',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=a55d9b88-c296-48df-a2cc-a1da3b2fc525&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.16673929747138,   128.33247880126578)},{    title:'대각서원',    addr:'경상남도 진주시 수곡면 대각길 104-21',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=bdb2dd47-4d44-4cda-b287-15c8658205df&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.2235222229957,   127.922735992821)},{    title:'광제서원',    addr:'경상남도 진주시 명석면 광제산로685번길 116',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=d61a2be2-887b-4e3d-924a-34ec1a0c7ffc&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.2754096563058,   128.031094936584)},{    title:'청곡사(진주)',    addr:'경상남도 진주시 금산면 월아산로1440번길 138',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=6e5cadf3-621e-4312-973b-6f0db020609e&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.1901439204492,   128.180996521374)},{    title:'진양호 일주도로',    addr:'경상남도 진주시 남강로1번길 126',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=dfeef522-13c0-4820-b8fb-eb1a35c09f31&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.1750978333596,   128.03708474999)},{    title:'진주 내촌호수마을',    addr:'경상남도 진주시 대평면 금성로 422-33',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=02113d5f-3793-4e46-8f95-f572a7d1b10d&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.1600054741951,   127.990222419736)},{    title:'서진주 스파랜드',    addr:'경상남도 진주시 명석면 진주대로 2320-31',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=676f5cef-ab90-41fd-8f29-a38e2ea5277d&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(35.2609186887248,   127.99426168006399)},{    title:'금호지',    addr:'경상남도 진주시 금산면 금산순환로587번길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=157a39d2-e609-4736-8cd0-3ce31b6e9bdf&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.2083086513297,   128.154253924442)},{    title:'망진산 봉수대',    addr:'경상남도 진주시 망경동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=ad47f11a-82b2-4b7f-845c-191df14dc86a&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.1771173757325,   128.07586500325002)},{    title:'진주 대암초록마을',    addr:'경상남도 진주시 집현면 진산로 1141',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=74bf5dfa-be0a-49b2-9771-5cf84f74c89b&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.26636592008371,   128.07926788360902)},{    title:'진주향교',    addr:'경상남도 진주시 향교로 99-3',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=8ca897fc-66a7-4da9-8a9e-061ad0b940a2&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.1978447630974,   128.09265680901)},{    title:'운강서원',    addr:'경상남도 진주시 금곡면 금곡로 197-24',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=875df313-f702-483c-8dba-db2c3a6d9269&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.1258896672876,   128.203628017033)},{    title:'청계서원(진주)',    addr:'경상남도 진주시 본성동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=e9b06077-3254-497a-90c4-a12c29157ed0&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.1894767009688,   128.08185997390498)},{    title:'성전암(진주)',    addr:'경상남도 진주시 이반성면 장안로65번길 291',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=63b4e66b-cd14-4686-8919-11b6813e02f1&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.2074979061662,   128.35171566904899)},{    title:'연화사(진주)',    addr:'경상남도 진주시 향교로42번길 13',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=6132a28d-d7fd-4fd8-8366-b25f7af12e04&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.1979563548901,   128.087870953779)},{    title:'LH 토지주택박물관',    addr:'경상남도 진주시 충의로 19',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=ee33d266-3e86-42cf-9894-dbcde0890603&big_category=A02&mid_category=A0204&big_area=36',    latlng: new kakao.maps.LatLng(35.1785561187717,   128.14580200440702)},{    title:'응석사(진주)',    addr:'경상남도 진주시 집현면 응석로 435',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=3fe4f700-eda8-4caf-aa1e-1383f4f3d5a0&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.296684692541,   128.058527570874)},{    title:'의곡사(진주)',    addr:'경상남도 진주시 의곡길 72',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=fa72c4de-bdb2-4acf-9ecc-57eff1639ad6&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.2040134223192,   128.08139389047702)},{    title:'남강댐 물 문화관',    addr:'경상남도 진주시 내동면 삼계로 455-46',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=56465551-59df-42ae-8971-a43bd75559b2&big_category=A02&mid_category=A0204&big_area=36',    latlng: new kakao.maps.LatLng(35.162508197822596,   128.030344013453)},{    title:'총림선원(진주)',    addr:'경상남도 진주시 망진산길 71',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=c8ef7151-1515-41d1-a5d8-cb59c490f8e5&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.1770246558751,   128.07777823304198)},{    title:'물사랑교육농장',    addr:'경상남도 진주시 대평면 호반로 414-11',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=6f6aed59-d845-4d2d-8631-c2f17b8102a5&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(35.1615099529506,   127.99053040480601)},{    title:'창렬사',    addr:'경상남도 진주시 남강로 626',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=59a16c95-9ab8-4ab9-8175-db16cd788d26&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(35.1894767009688,   128.08185997390498)},{    title:'봉황교~비봉산 생태탐방로',    addr:'경상남도 진주시 옥봉동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=9c7e017e-7d2a-4851-88d6-e9e0a0277ef4&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.1978447630974,   128.09265680901)},{    title:'진양호자연생태문화탐방로',    addr:'경상남도 진주시 남강로1번길 96-6',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=b375bfc7-5328-478c-bea9-ef083dd33e04&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(35.174435516290394,   128.037383695716)},
+{    title:'수륙해수욕장',    addr:'경상남도 통영시 산양읍 삼칭이해안길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=1edaf045-a1f8-43b5-b9bc-f52148102e33&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.80485585921816,   128.4345848726133)},{    title:'통영시립박물관',    addr:'경상남도 통영시 중앙로 65',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=1880435b-51d8-47cf-a1d0-fc00be8f1074&big_category=A02&mid_category=A0206&big_area=36',    latlng: new kakao.maps.LatLng(34.84073581738659,   128.4166971743861)},{    title:'통영밤바다 야경투어',    addr:'경상남도 통영시 도남로 269-20',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=74b6cd9a-af3d-4b10-a0ad-b243d5632f1a&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.8277435282068,   128.433840623276)},{    title:'청마거리',    addr:'경남 통영시 중앙동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=1df47e63-1e86-4b83-9c70-1e6b08652109&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.8477203607019,   128.423079269884)},{    title:'사량도 지리산',    addr:'경상남도 통영시 사량면 돈지리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=8397fae1-5b0c-491c-b1e7-b6302a9cee8c&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.845855148614305,   128.182204878586)},{    title:'달아공원',    addr:'경상남도 통영시 산양읍 산양일주로 1115',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=5f9bef0b-863f-4b83-a590-059ae16c3c19&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.7691638416324,   128.399268095069)},{    title:'비진도해수욕장',    addr:'경상남도 통영시 한산면 비진리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=3b424ef7-000d-4611-a5b7-0ae7bc7531f9&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7261072944046,   128.46235328163)},{    title:'통영 욕지섬 모노레일',    addr:'경상남도 통영시 욕지면 욕지일주로 1467',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=0999671f-32a9-42d6-b9c6-7b9e303cb113&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.6291910882326,   128.263649724728)},{    title:'연대도 해수욕장',    addr:'경상남도 통영시 산양읍 연대길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=0ee83766-fd17-4da4-8a42-68f609d05d84&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7363708921173,   128.396050916102)},{    title:'추도',    addr:'경상남도 통영시 산양읍 추도리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=52f3c6e7-d9f8-4991-bafd-77c3629a345a&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.756187096657804,   128.295457269933)},{    title:'통영 삼도수군통제영',    addr:'경상남도 통영시 세병로 27',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=a4b8588e-a3a9-40ef-8cdf-dfe344926d8e&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.8477203607019,   128.423079269884)},{    title:'연화도(통영)',    addr:'경상남도 통영시 욕지면 연화도',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=a309616c-e497-43a6-a4a1-7c0726641a23&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.6459942292734,   128.354324208877)},{    title:'욕지도 (유동어촌체험마을)',    addr:'경상남도 통영시 욕지면 욕지일주로 1148-115',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=cc4bca70-2acf-4801-afb0-33dbbedf0a83&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.621875573819295,   128.243131883311)},{    title:'만지도',    addr:'경상남도 통영시 산양읍 만지길 3',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=4c71c80b-b1ed-438e-a089-d4a7dd5656f2&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7400444608814,   128.38945227296998)},{    title:'이순신의 물의나라 워터랜드',    addr:'경상남도 통영시 도남동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=ce7d2af1-5a1c-480b-a3b8-248c41a1af42&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.824374746341,   128.424146493077)},{    title:'비진도',    addr:'경상남도 통영시 한산면',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=14d8f08b-71b6-43bb-88e1-28791487f471&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7782671228442,   128.486850822166)},{    title:'통영 섬탄다',    addr:'경상남도 통영시 도남로 269-20',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=b3f32edb-3711-4d3d-a0dd-35d373aa5286&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.8277435282068,   128.433840623276)},{    title:'통영향교',    addr:'경상남도 통영시 광도면 향교길 82',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=69b35533-86c2-4d5e-b5fc-4a2866dd0413&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.8786022989613,   128.407634610466)},{    title:'한산대첩기념비',    addr:'경상남도 통영시 한산면 한산일주로 70',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=d6026cdc-d890-407f-b8df-56e02b9ab634&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.7942184100208,   128.471880439112)},{    title:'통영 한산도 이충무공 유적',    addr:'경상남도 통영시 한산면 한산일주로 70',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=fe64fb78-c10b-425a-a9db-9f165db3549e&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.7942184100208,   128.471880439112)},{    title:'충렬사',    addr:'경상남도 통영시 여황로 251',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=53d112bf-ad38-4532-be6c-1236eeceb347&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.846989024012,   128.417477814048)},{    title:'용화사(통영)',    addr:'경상남도 통영시 봉수로 107-82',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=b78bc85e-ac09-47d8-b41c-398637b9abc0&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.8186099629698,   128.415496346699)},{    title:'안정사',    addr:'경상남도 통영시 광도면 안정1길 363',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=cb894178-c291-47d4-bcdc-f672f010be49&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.943719921346194,   128.395419259488)},{    title:'윤이상 기념공원(도천테마파크)',    addr:'경상남도 통영시 중앙로 27',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=0cf00c0b-96cd-44b6-aebe-792bff7a4734&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.8382067822571,   128.413439924032)},{    title:'미륵도 관광특구',    addr:'경상남도 통영시 도남동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=331f16be-b1f0-4534-92bc-6624f7959f97&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.824374746341,   128.424146493077)},{    title:'통영마리나리조트',    addr:'경상남도 통영시 큰발개1길 33',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=d6bc12df-891a-489a-a558-ac8a4502046e&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.8274453254909,   128.44016186391198)},{    title:'연화사(통영)',    addr:'경상남도 통영시 욕지면 십리골길 110',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=de0f0e5a-5f12-44e2-adae-09e93808a8f2&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.64642572022123,   128.35532044807468)},{    title:'윤이상 생가',    addr:'경상남도 통영시 중앙로 27',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=8f0548f3-1e26-492d-896d-ecbbb6381228&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.8382067822571,   128.413439924032)},{    title:'사량도 칠현산',    addr:'경상남도 통영시 사량면 읍덕리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=6ce4e397-4b0c-40b5-828b-690bbb45427f&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.8325173899718,   128.229635058506)},{    title:'당포성지',    addr:'경상남도 통영시 산양읍 삼덕리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=c579bd0b-7e8a-4d87-b4ca-4cbc6c8f67b5&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.7953237432375,   128.3844572167)},{    title:'착량묘',    addr:'경상남도 통영시 착량길 27',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=7782333a-297b-4551-bb0a-0946df397861&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.8356731929818,   128.410567580095)},{    title:'박경리 생가',    addr:'경상남도 통영시 충렬1길 76-38',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=5a80b969-ec1a-49fc-a26b-d73acd357f7c&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.8466553320119,   128.420122199422)},{    title:'한려수도 조망케이블카',    addr:'경상남도 통영시 발개로 205',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=0c8fdbdf-39d2-4e46-8403-e05d9c1bd168&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.826787740581395,   128.426207930721)},{    title:'미래사(통영)',    addr:'경상남도 통영시 산양읍 미륵산길 192',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=a900b0d9-60c4-4c48-a17e-a32939d0ec0b&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.8045910779686,   128.420895042252)},{    title:'해저터널(통영)',    addr:'경상남도 통영시 당동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=9d6fe19c-c6e5-4daa-ad67-e98de1d1be38&big_category=A02&mid_category=A0205&big_area=36',    latlng: new kakao.maps.LatLng(34.835860890346304,   128.41116982145098)},{    title:'이순신공원',    addr:'경상남도 통영시 멘데해안길 205',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=1274035e-f6be-453a-91df-6c3b791043b5&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.844303330507806,   128.442296543906)},{    title:'동피랑마을',    addr:'경상남도 통영시 동피랑1길 6-18',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=41211b90-1572-4fdf-9766-da12341150e6&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.845305652073996,   128.427625013602)},{    title:'장사도',    addr:'경상남도 통영시 한산면 장사도',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=1f43731d-999a-47a8-8d1a-53a051806b6c&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7119030768921,   128.559673242216)},{    title:'사량도',    addr:'경상남도 통영시 사량면 진촌2길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=e45cd951-9219-4c22-ad48-0a5934c08341&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.8435941899061,   128.22505064597132)},{    title:'한산도',    addr:'경상남도 통영시 한산면',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=445623d8-0be4-48a3-bc03-78d9e2604d00&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7782671228442,   128.486850822166)},{    title:'연대도',    addr:'경상남도 통영시 산양읍 연대길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=89cb954d-c80d-4db4-a1bc-c4ce5474eddc&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7363708921173,   128.396050916102)},{    title:'서피랑 마을',    addr:'경상남도 통영시 서호동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=d9cf99de-a9de-4474-b6f3-7282c358f750&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.8439651632473,   128.418943379707)},{    title:'통영 세병관',    addr:'경상남도 통영시 세병로 27',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=cd833710-5350-4a09-b596-7bc46fd0614c&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.8477203607019,   128.423079269884)},{    title:'유동어촌체험마을',    addr:'경상남도 통영시 욕지면 욕지일주로 1148-115',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=4899137d-f301-40ab-9161-f624a9534c55&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.621875573819295,   128.243131883311)},{    title:'노대도',    addr:'경상남도 통영시 욕지면 노대도',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=4e3f90af-e2ea-4cea-85e6-8b4e98e8ee6d&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.6651329770701,   128.250602478605)},{    title:'우도(통영)',    addr:'경상남도 통영시 욕지면 연화리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=6503c0be-9e64-490d-847f-0e913dfc5075&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.6459942292734,   128.354324208877)},{    title:'죽도(통영)',    addr:'경상남도 통영시 한산면 죽도',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=d9f9d91a-693a-423a-9b23-146585a01083&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7314281319378,   128.529322942192)},{    title:'음악분수 휴게광장',    addr:'경상남도 통영시 도남동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=c692a338-fb2c-41d2-acb8-932c4897a464&big_category=A02&mid_category=A0205&big_area=36',    latlng: new kakao.maps.LatLng(34.824374746341,   128.424146493077)},{    title:'매물도',    addr:'경상남도 통영시 한산면 매물도대항길',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=dcc4c516-6e30-4a71-bf56-d5a749cdd6b9&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.6408432030018,   128.570655732944)},{    title:'소매물도 등대',    addr:'경상남도 통영시 한산면 소매물도길 246',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=84c53a58-f696-4d55-950e-9fb64dbe8049&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.620119056812705,   128.547897073029)},{    title:'충무교와 통영운하',    addr:'경상남도 통영시 당동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=b1b7bb98-194c-49a7-a9d6-8d87e0a3a285&big_category=A02&mid_category=A0205&big_area=36',    latlng: new kakao.maps.LatLng(34.835860890346304,   128.41116982145098)},{    title:'통영 연명어촌체험마을',    addr:'경상남도 통영시 산양읍 연명길 134',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=034ca705-2258-400c-9854-352870ebe094&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.78132052251556,   128.3947442881647)},{    title:'통영RCE세자트라숲',    addr:'경상남도 통영시 용남면 용남해안로 116',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=8a3f5e15-e0a2-4e44-a2f0-58a1717a86c0&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.849061460182355,   128.44782205763957)},{    title:'도남관광지',    addr:'경상남도 통영시 큰발개1길 33',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=3b32e2a7-2286-49dd-85e8-5b00d1e0ca05&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.8274453254909,   128.44016186391198)},{    title:'통영항 꿀빵거리',    addr:'경상남도 통영시 중앙동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=d46ce34d-3e81-4564-bedf-2a599c6df6bf&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.8477203607019,   128.423079269884)},{    title:'용호도',    addr:'경상남도 통영시 한산면 용호리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=5f987cc6-196b-4cc2-b650-3b1a385cd829&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7412359233216,   128.49052824137)},{    title:'청마 생가',    addr:'경상남도 통영시 망일1길 82',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=79262a2f-a467-476b-8bd2-da9f2391bcfe&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.845071617345,   128.435256270711)},{    title:'해평열녀사당',    addr:'경상남도 통영시 해평5길 131',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=8c691f97-6bb3-4942-828d-77b4f9377fbd&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.8331355629113,   128.416112224509)},{    title:'통영대교',    addr:'경상남도 통영시 미수해안로 53-1',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=3534ff39-6898-42bf-89ed-6303da26c395&big_category=A02&mid_category=A0205&big_area=36',    latlng: new kakao.maps.LatLng(34.830542255815104,   128.40439385938498)},{    title:'통영파라스파',    addr:'경상남도 통영시 미우지해안로 29',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=79e77fb6-c9a9-44ca-844b-677e7602370c&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.828047917129,   128.403101071974)},{    title:'삼칭이길',    addr:'경상남도 통영시 산양읍 영운리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=c6cb20f7-7619-4f25-af50-1c859e0fefa5&big_category=A02&mid_category=A0203&big_area=36',    latlng: new kakao.maps.LatLng(34.819930816878745,   128.439729397776)},{    title:'통영가스홍보관',    addr:'경상남도 통영시 광도면 안정로 770',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=c8cc0d8f-cc4e-477d-b8fc-e8bd2028889c&big_category=A02&mid_category=A0204&big_area=36',    latlng: new kakao.maps.LatLng(34.948318558994195,   128.414876522188)},{    title:'추봉도',    addr:'경상남도 통영시 한산면',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=84534e94-d5fd-4b63-84f3-3f193da5c8f8&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.7782671228442,   128.486850822166)},{    title:'충무시문화동벅수',    addr:'경상남도 통영시 세병로 26',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=e7588218-3912-41d4-b43c-41077a9b8b80&big_category=A02&mid_category=A0201&big_area=36',    latlng: new kakao.maps.LatLng(34.846755625155396,   128.423569940615)},{    title:'한려해상 국립공원(동부)',    addr:'경상남도 통영시 도남로 117',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=8d9bed89-3387-4765-b4b2-41f5f541803d&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.8312145616667,   128.417299200806)},{    title:'통영항',    addr:'경상남도 통영시 통영해안로 234',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=f2945639-8625-4236-b074-ec7c627a9c6c&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.839847299617894,   128.420236998749)},{    title:'한려해상국립공원(통영)',    addr:'경상남도 통영시 산양읍',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=72ab6eef-9de5-4232-8d92-6cf02386aa92&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.819930816878745,   128.439729397776)},{    title:'수우도',    addr:'경상남도 통영시 사량면 돈지리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=2adbdbca-757b-4739-897e-1f260c6fb7cc&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.845855148614305,   128.182204878586)},{    title:'강구안',    addr:'경상남도 통영시 중앙동',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=9ab6d6ed-abd9-456a-9623-0d2132e9686f&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.8477203607019,   128.423079269884)},{    title:'벽방산',    addr:'경상남도 통영시 도산면 원산리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=09f29666-41f2-45c6-ad18-e4eadc142f2a&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.9383054426978,   128.366515884369)},{    title:'한산도 망산',    addr:'경상남도 통영시 한산면 하소리',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=df334c0d-674b-40ab-b0be-928474cade41&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.767575061616,   128.506118025637)},{    title:'도남항 동방파제 등대 (연필등대)',    addr:'경상남도 통영시 도남로 269-38',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=59de2a38-6faa-440e-8def-422cac590373&big_category=A01&mid_category=A0101&big_area=36',    latlng: new kakao.maps.LatLng(34.8286679814851,   128.433712368801)},{    title:'통영유람선',    addr:'경상남도 통영시 도남로 269-38',    url:'https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=153ef8c5-6493-4fd1-acd3-72d14607ee8b&big_category=A02&mid_category=A0202&big_area=36',    latlng: new kakao.maps.LatLng(34.8286679814851,   128.433712368801)},
+               ];
+
+        // 마커 이미지의 이미지 주소입니다
+        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+        var clickedOverlay =null;
+        for (var i = 0; i < positions.length; i ++) {
+            var data = positions[i];
+            displayMarker(data);
+        }
+
+        function displayMarker(data){
+             // 마커 이미지의 이미지 크기 입니다
+             var imageSize = new kakao.maps.Size(25, 20); 
+            
+            // 마커 이미지를 생성합니다    
+            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+            
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                map: map,                       // 마커를 표시할 지도
+                position: data.latlng, // 마커를 표시할 위치
+                image : markerImage, // 마커 이미지 
+            });
+          
+            var overlay = new kakao.maps.CustomOverlay({
+                map: map,
+                position: marker.getPosition(),
+                clickable: true
+                
+                
+            });  
+
+            var wrap = document.createElement('div');
+            wrap.className="m_wrap";
+
+            var info = document.createElement('div');
+            info.className="m_info";
+
+            wrap.appendChild(info); //wrap > info
+
+            var title = document.createElement('div');
+            title.className="m_title";
+            title.innerHTML= data.title;
+            info.appendChild(title); //info >title
+
+            var close =document.createElement('div');
+            close.className="close";
+            // close.innerHTML="닫기";
+            close.onclick = function(){
+                overlay.setMap(null);
+            }
+
+            title.append(close); //title > close
+
+            var body = document.createElement('div');
+            body.className="m_body";
+            info.appendChild(body); //info >body
+
+            var ellipsis =document.createElement('div');
+            ellipsis.className="m_ellipsis1";
+            ellipsis.innerHTML=data.addr
+            body.appendChild(ellipsis); // body > ellipsis
+
+            var image =document.createElement('div');
+            image.className="m_img";
+            body.appendChild(image);
+
+            var button = document.createElement('button');
+            button.setAttribute('value', data.title);
+            button.className="m_botton"
+            button.onclick = function(){
+                
+                // Task에 입력 값 넣기
+                var task = $("<div class='task'></div>").text($(this).val());
+
+                //삭제버튼
+                var del = $("<i class='i_delete'></i>").click(function(){
+                    var p = $(this).parent();
+                    p.fadeOut(function(){
+                        p.remove();
+                    })
+                });
+                
+            
+            //Task에 삭제 & 체크 버튼 추가하기
+            task.append(del)
+            
+            //할일 목록에 추가
+            $(".done").append(task);
+            }
+
+            image.appendChild(button); //image >button
+
+
+            var desc =document.createElement('div');
+            desc.className="m_desc";
+            body.appendChild(desc); // body >desc
+
+            
+
+            var a_desc = document.createElement('div');
+            a_desc.className="a_desc"
+            desc.appendChild(a_desc);
+
+            var a =document.createElement('a');
+            a.className="link"
+            a.innerHTML="상세보기"
+            a.setAttribute('target','_blank');
+            a.setAttribute('href',data.url);
+            a_desc.appendChild(a); //a_desc > a
+
+            overlay.setContent(wrap);
+            var clickedOverlay = null;
+            
+            overlay.setMap(null);
+            kakao.maps.event.addListener(marker, 'click', displayOverlay(map,overlay));
+        }
+
+        function displayOverlay(map,overlay){
+            return function(){
+                if(clickedOverlay){
+                    clickedOverlay.setMap(null);
+                }
+                overlay.setMap(map);
+                clickedOverlay=overlay;
+            }
+        }
+
+        function makeOverListener(map, marker, infowindow) {
+            return function() {
+                infowindow.open(map, marker);
+                };
+        }
+        // 로드뷰
+
+        // 마커 이미지를 생성합니다
+        var markImage = new kakao.maps.MarkerImage(
+            'https://t1.daumcdn.net/localimg/localimages/07/2018/pc/roadview_minimap_wk_2018.png',
+            new kakao.maps.Size(26, 46), {
+                // 스프라이트 이미지를 사용합니다.
+                // 스프라이트 이미지 전체의 크기를 지정하고
+                spriteSize: new kakao.maps.Size(1666, 168),
+                // 사용하고 싶은 영역의 좌상단 좌표를 입력합니다.
+                // background-position으로 지정하는 값이며 부호는 반대입니다.
+                spriteOrigin: new kakao.maps.Point(705, 114),
+                offset: new kakao.maps.Point(13, 46)
+            }
+        );
+
+        // 드래그가 가능한 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            image: markImage,
+            position: mapCenter,
+            draggable: true
+        });
+
+        // 마커에 dragend 이벤트를 등록합니다
+        kakao.maps.event.addListener(marker, 'dragend', function(mouseEvent) {
+
+            // 현재 마커가 놓인 자리의 좌표입니다 
+            var position = marker.getPosition();
+
+            // 마커가 놓인 위치를 기준으로 로드뷰를 설정합니다
+            toggleRoadview(position);
+        });
+
+        //지도에 클릭 이벤트를 등록합니다
+        kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+
+            // 지도 위에 로드뷰 도로 오버레이가 추가된 상태가 아니면 클릭이벤트를 무시합니다 
+            if (!overlayOn) {
+                return;
+            }
+
+            // 클릭한 위치의 좌표입니다 
+            var position = mouseEvent.latLng;
+
+            // 마커를 클릭한 위치로 옮깁니다
+            marker.setPosition(position);
+
+            // 클락한 위치를 기준으로 로드뷰를 설정합니다
+            toggleRoadview(position);
+        });
+
+        // 전달받은 좌표(position)에 가까운 로드뷰의 파노라마 ID를 추출하여
+        // 로드뷰를 설정하는 함수입니다
+        function toggleRoadview(position) {
+            rvClient.getNearestPanoId(position, 50, function(panoId) {
+                // 파노라마 ID가 null 이면 로드뷰를 숨깁니다
+                if (panoId == null) {
+                    toggleMapWrapper(true, position);
+                } else {
+                    toggleMapWrapper(false, position);
+
+                    // panoId로 로드뷰를 설정합니다
+                    rv.setPanoId(panoId, position);
+                }
+            });
+        }
+
+        // 지도를 감싸고 있는 div의 크기를 조정하는 함수입니다
+        function toggleMapWrapper(active, position) {
+            if (active) {
+
+                // 지도를 감싸고 있는 div의 너비가 100%가 되도록 class를 변경합니다 
+                container_.className = '';
+
+                // 지도의 크기가 변경되었기 때문에 relayout 함수를 호출합니다
+                map.relayout();
+
+                // 지도의 너비가 변경될 때 지도중심을 입력받은 위치(position)로 설정합니다
+                map.setCenter(position);
+            } else {
+
+                // 지도만 보여지고 있는 상태이면 지도의 너비가 50%가 되도록 class를 변경하여
+                // 로드뷰가 함께 표시되게 합니다
+                if (container_.className.indexOf('view_roadview') == -1) {
+                    container_.className = 'view_roadview';
+
+                    // 지도의 크기가 변경되었기 때문에 relayout 함수를 호출합니다
+                    map.relayout();
+
+                    // 지도의 너비가 변경될 때 지도중심을 입력받은 위치(position)로 설정합니다
+                    map.setCenter(position);
+                }
+            }
+        }
+
+        // 지도 위의 로드뷰 도로 오버레이를 추가,제거하는 함수입니다
+        function toggleOverlay(active) {
+            if (active) {
+                overlayOn = true;
+
+                // 지도 위에 로드뷰 도로 오버레이를 추가합니다
+                map.addOverlayMapTypeId(kakao.maps.MapTypeId.ROADVIEW);
+
+                // 지도 위에 마커를 표시합니다
+                marker.setMap(map);
+
+                // 마커의 위치를 지도 중심으로 설정합니다 
+                marker.setPosition(map.getCenter());
+
+                // 로드뷰의 위치를 지도 중심으로 설정합니다
+                toggleRoadview(map.getCenter());
+            } else {
+                overlayOn = false;
+
+                // 지도 위의 로드뷰 도로 오버레이를 제거합니다
+                map.removeOverlayMapTypeId(kakao.maps.MapTypeId.ROADVIEW);
+
+                // 지도 위의 마커를 제거합니다
+                marker.setMap(null);
+            }
+        }
+
+        // 지도 위의 로드뷰 버튼을 눌렀을 때 호출되는 함수입니다
+        function setRoadviewRoad() {
+            var control = document.getElementById('roadviewControl');
+
+            // 버튼이 눌린 상태가 아니면
+            if (control.className.indexOf('active') == -1) {
+                control.className = 'active';
+
+                // 로드뷰 도로 오버레이가 보이게 합니다
+                toggleOverlay(true);
+            } else {
+                control.className = '';
+
+                // 로드뷰 도로 오버레이를 제거합니다
+                toggleOverlay(false);
+            }
+        }
+
+        // 로드뷰에서 X버튼을 눌렀을 때 로드뷰를 지도 뒤로 숨기는 함수입니다
+        function closeRoadview() {
+            var position = marker.getPosition();
+            toggleMapWrapper(true, position);
+        }
+    
+    </script>
+    </body>
