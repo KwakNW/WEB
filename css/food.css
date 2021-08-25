@@ -1,0 +1,334 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css); /*body font*/
+@import url('https://fonts.googleapis.com/css?family=Rajdhani');/*number font*/
+/*##############################################################*/
+/*배너 사진  CSS                                                 */
+/*##############################################################*/
+	.food #banner
+	{
+			position: relative;
+			background: url(../images/food_banner.gif) center;
+			background-size: cover;
+			padding: 6em;
+	}
+/*##############################################################*/
+/* 메뉴                                                 */
+/*##############################################################*/
+#header
+	{
+		position: relative;
+	}
+
+	#header .container
+	{
+		position: relative;
+		padding: 6em 0em;
+		width: 1200px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	#logo
+	{
+		/* font-family: 'Jua', sans-serif;'Encode Sans Expanded', sans-serif; */
+		font-family: 'Sunflower', sans-serif;
+		position: absolute;
+		display: block;
+		text-decoration: none;
+		font-size: 2.8em;
+		font-weight: 600;
+		color: #FFF;
+		left: 0em;
+		top: 60px;
+	}
+
+	#logo h1
+	{
+		color: #FFF;
+	}
+	#home{
+		color: #FFF;
+	}
+
+	#nav
+	{
+		position: absolute;
+		right: 0em;
+		top: 4.5em;
+	}
+	#nav > ul > li
+	{
+		list-style: none;
+		float: left;
+	}
+
+	#nav > ul > li:nth-child(n+2)
+	{
+		margin-left: 10px;
+	}
+	#nav > ul > li:last-child
+	{
+		padding-right: 0;
+	}
+
+	#nav > ul > li  a
+	{
+		display: block;
+		padding: 0.80em 1.2em;
+		letter-spacing: 0.06em;
+		font-size: 1.1em;
+		outline: 0;
+		color: #FFF;
+	}
+
+	#nav li.active
+	{
+		border-color: #FFF;
+		border-style: solid;
+		border-radius: 5px;
+		color: #FFF;
+	}
+
+	#nav li ul {
+		background: gray;
+		display:none;
+		padding:0px;
+		position:absolute;
+		width:150px;
+		z-index:10;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+	}
+	#nav li ul li {
+		height: 43px;
+		/* margin-left: -10%; */
+	}
+	#nav li ul li a{
+		margin-left: 9%;
+	}
+
+	#nav li ul li:first-child {
+		/* background-color:#180E0B; */
+		height: 20px;
+	}
+
+	#nav li:hover ul {
+		display:block;
+	}
+
+	#nav li ul li:hover:nth-child(n+2) {
+		background-color:	#573e73;/*maroon;*/
+		width:150px;
+	}
+
+/*##############################################################*/
+/* food 메인페이지                                              */
+/*##############################################################*/
+	body{
+		font-family: 'Nanum Gothic', serif;
+	}
+	.container {
+		padding-top:	67px;
+		padding-bottom: 60px;
+		margin: 30px;
+	}
+	
+	#midsection{
+		padding-top: 37px;
+	}
+	#midsection  img{
+		width: 300px;
+		height: 450px;
+		border-radius: 2px;
+	}
+	#main_pic{
+		padding-top: 15px;
+	}
+	#main_pic a:hover{
+		color: white;
+	}
+	#main_pic img:first-child{
+		padding-left: 75px;
+	}
+	#main_pic img:first-child, #main_pic>img:nth-child(2){
+		padding-r
+		height: 70px;
+	}
+	#textdiv {
+		width:450px;
+		height: auto;
+		margin-top: -30px;
+	}
+	#textdiv p{
+		margin-top: 0.3em;
+		color: #4c4c4c;
+		font-size: 1.2em;
+		font-weight: lighter;
+		letter-spacing: 0.3em;
+	}
+	#textdiv h1{
+		font-weight: bolder;
+		font-size: 37px;
+		color: #4c4c4c;
+	}
+	hr{
+		color:#a2a2a2;
+	}
+
+/*폴더형식 div -----------시작*/
+	#section{
+		height: 655px;
+		background-color: white;
+		/* background-color: #70c097; */
+	}
+
+	#folder_choice{
+		width:1220px;
+		height: 72px;
+	}
+	#folder_choice a{
+		color: black;
+	}
+	#folder_choice>ul{
+		overflow: hidden;
+		padding: 0;
+		padding-top:11px;
+	}
+	#folder_choice>ul li{
+		 float: left;
+		 border: 1px solid gray;
+		 height:40px;
+		 padding: 10px 40px;
+		 line-height: 40px;
+		 font-weight: bold;
+	}
+	#folder_choice>ul>a:first-child>li{
+		border-width: 2px;
+		height: 48px;
+		line-height: 48px;
+		margin-top: -7px;
+		border-bottom-width: 0px;
+		background-color: #dee2e6;
+	}
+	#folder_choice>ul>a:nth-child(2)>li{
+		border-right-width: 0px;
+		border-left-width: 0px;
+		background-color: #dee2e6;
+/*-------------구분선--------------*/
+		border-width: ;
+		height: ;
+		line-height: ;
+		margin-top: ;
+		border-bottom-width: 2px;
+	}
+	#folder_choice>ul>a:nth-child(3)>li{
+		border-width: ;
+		height: ;
+		line-height: ;
+		margin-top: ;
+		border-bottom-width: 2px;
+		border-left-width: ;
+		background-color: #dee2e6;
+	}
+	#folder_choice>ul>li:last-child{
+		width: 605px;
+		border-top: 0px;
+		border-left: 0px;
+		border-right: 0px;
+		border-bottom-width: 2px;
+		margin-top: 1px;
+	}
+	#folder_article{
+		width:1200px;
+		height:420px;
+		border: 2px solid gray;
+		border-top: 0px;
+	}
+	#folder_article h1{
+		width:500px;
+		margin-top: 20px;
+		font-weight: lighter;
+		letter-spacing: 1px;
+		line-height: 35px;
+	}
+	#folder_article p{
+		width:480px;
+		margin-top: 30px;
+		letter-spacing: 1px;
+		line-height: 25px;
+	}
+
+	#bus{
+		width:480px;
+		margin-top: 50px;
+		letter-spacing: 1px;
+		line-height: 25px;
+		color: blue;
+	}
+	
+	#folder_article a{
+		color:black;
+	}
+	#folder_article img{
+		width: 500px;
+		height: 330px;
+		border-radius: 8px;
+		float: right;
+	}
+	#folder_article iframe{
+		width: 500px;
+		height: 330px;
+		border-radius: 8px;
+		float: right;
+	}
+	#folder_button{
+		width: 140px;
+		height: 45px;
+		margin-top: 13px;
+		text-align: center;
+		line-height: 45px;
+		border: 1px solid black;
+		border-radius: 5px;
+		float: left;
+		position: relative;
+	}
+	[id$="first_folder"]{
+		width: 1060px;
+		height: 330px;
+		margin-left: 71px;
+		margin-top: 45px;
+		position: absolute;
+		/* opacity: 1;
+		z-index:100; */
+		display: block;
+	}
+	[id$="second_folder"]{
+		width: 1060px;
+		height: 330px;
+		margin-left: 71px;
+		margin-top: 45px;
+		position: absolute;
+		/* opacity: 0;
+		z-index:10; */
+		display: none;
+	}
+	[id$="second_folder"] h4{
+		display: inline;
+		font-weight: lighter;
+	}
+	[id$="third_folder"]{
+		width: 1060px;
+		height: 330px;
+		margin-left: 71px;
+		margin-top: 45px;
+		position: absolute;
+		/* opacity: 0;
+		z-index:1; */
+		display: none;
+	}
+
+	#menu{
+		margin-left: 20px;
+		margin-top: 65px;
+		font-size: large;
+		position: absolute;
+	}
+
